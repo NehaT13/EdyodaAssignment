@@ -1,0 +1,16 @@
+ASSIGNMENT - Service
+
+In the specified condition, firstly we will have to verify if the service is running or not,
+[root@ip-172-31-27-34 09-deployments]# kubectl get  svc -o wide
+NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE     SELECTOR
+kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP        4h15m   <none>
+kubia        NodePort    10.97.231.85   <none>        80:31016/TCP   145m    app=kubia
+
+If it is running, we can edit the YAML file by changing into NodePort and try to access the service.
+[root@ip-172-31-27-34 09-deployments]# kubectl edit service kubia
+service/kubia edited
+
+we can try to access the application using public ip : port no
+http://54.151.175.174:31016/
+
+If the application is not reachable, we will delete the existing service and create new one and try to access the new service.
