@@ -1,0 +1,45 @@
+Assignment 4 -- VOTING APP ASSIGNMENT
+
+-- To start with, while deleting priorly existing pods and services with kubectl delete all -all, kubernetes service will keep running
+-- After creating pods, with kubectl apply -f ., NodePort is assigned to result and vote
+db           ClusterIP   10.98.232.28     <none>        5432/TCP         9m44s
+kubernetes   ClusterIP   10.96.0.1        <none>        443/TCP          12m
+redis        ClusterIP   10.96.175.196    <none>        6379/TCP         9m44s
+result       NodePort    10.105.126.182   <none>        5001:31001/TCP   9m43s
+vote         NodePort    10.105.79.139    <none>        5000:31000/TCP   9m43s
+
+http://54.151.175.174:31000 - shows the voting pod
+http://54.151.175.174:31001 - shows the result pod
+
+After deleting voting as well as result pod, application still works fine
+
+[root@ip-172-31-27-34 k8s-specifications]# kubectl delete po vote-94849dc97-kfvn8
+pod "vote-94849dc97-kfvn8" deleted
+
+kubectl delete po worker-dd46d7584-k2v4q
+pod "worker-dd46d7584-k2v4q" deleted
+^C
+[root@ip-172-31-27-34 k8s-specifications]# kubectl get po
+NAME                      READY   STATUS            RESTARTS   AGE
+db-b54cd94f4-4wljc        2/2     Running           0          4m11s
+redis-868d64d78-tslvc     2/2     Running           0          56m
+result-5d57b59f4b-n5vsl   2/2     Running           0          6m12s
+vote-94849dc97-q2nwz      2/2     Running           0          8m25s
+worker-dd46d7584-59nx8    0/2     PodInitializing   0          4s
+worker-dd46d7584-k2v4q    2/2     Terminating       2          17m
+
+kubectl delete po db-b54cd94f4-9h99t
+pod "db-b54cd94f4-9h99t" deleted
+
+After deleting db pod, the result pod stopped responding 
+The db-connection is connected to the previous instance as it is in sync with database, so when we delete the db-pod, it doesnt find the instance of the database, so it stopped responding.
+also deleting the db-pod will leads to the connection lost.
+
+To make the result pod working again, will try deleting the result pod and then creating another result-pod. 
+
+----------------------------------------------
+
+
+
+
+
