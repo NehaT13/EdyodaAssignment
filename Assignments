@@ -1,0 +1,13 @@
+Assignment 4
+-- To start with, while deleting priorly existing pods and services with kubectl delete all -all, kubernetes service will keep running
+-- After creating pods, with kubectl apply -f ., NodePort is assigned to result and vote
+db           ClusterIP   10.98.232.28     <none>        5432/TCP         9m44s
+kubernetes   ClusterIP   10.96.0.1        <none>        443/TCP          12m
+redis        ClusterIP   10.96.175.196    <none>        6379/TCP         9m44s
+result       NodePort    10.105.126.182   <none>        5001:31001/TCP   9m43s
+vote         NodePort    10.105.79.139    <none>        5000:31000/TCP   9m43s
+
+http://54.151.175.174:31000 - shows the voting pod
+http://54.151.175.174:31001 - shows the result pod
+
+
