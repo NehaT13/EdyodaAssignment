@@ -1,0 +1,6 @@
+ASSIGNMENT - DEPLOYMENT
+
+To update the container's image using deployment, we have to perform a rolling update with set image command.
+[root@ip-172-31-27-34 09-deployments]# kubectl set image deployment kubia nodejs=luksa/kubia:v2
+deployment.apps/kubia image updated
+
