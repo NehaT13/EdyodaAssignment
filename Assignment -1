@@ -1,0 +1,6 @@
+Assignment 1 - REPLICASET
+
+Daemon-set can be used in the case where, we will be in need to keep monitoring on all or specific set of pods. 
+To select specific set of pods, Node selector can be used.
+
+-----------------------------------------------
